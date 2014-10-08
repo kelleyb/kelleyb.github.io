@@ -1,0 +1,2 @@
+<h3>About Me</h3>
+<p class="indent">My name is Brian Kelley. I'm a sophomore at Rensselaer Polytechnic Institute, and I'm currently pursuing a Bachelor's of Science in Computer Science. I also like working on side programming projects in my spare time, both just for fun and for the Rensselaer Center for Open Source (RCOS). You can see what I've been working on by typing the "projects" command.</p><br/>

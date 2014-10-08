@@ -1,0 +1,5 @@
+<a href="https://github.com/kelleyb/Where-R-U"><h3>Where R U? - August 2014-Current</h3></a>
+<p class="indent">Responsible for the Android development component of a dual platform open source iOS/Android application to plan and coordinate carpools. We hope to release by the end of the Fall semester 2014</p>
+<br/>
+<a href="https://github.com/kelleyb/RRS_Payload"><h3>RRS Payload - January 2014-Current</h3></a>
+<p class="indent">The Rensselaer Rocket Society required a scientific payload to achieve their goals and qualify for competitions such as the Experimental Sounding Rocket Competition. The payload we designed measures statistics such as temperature, humidity, barometric pressure, pitch, yaw, and altitude as well as GPS location data to generate a model of the rocket's flight path. My contribution to this mainly consists of software written in Arduino C/C++ to control the physical electronics. The software is hosted and maintained on GitHub to provide version control and to enable group contributions.</p><br/>

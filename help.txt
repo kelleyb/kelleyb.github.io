@@ -1,0 +1,7 @@
+<p>Commands:</p>
+<p class="indent">help       :    Display the help text (This!)</p>
+<p class="indent">education  :    Display information about my education</p>
+<p class="indent">experience :    Display my current work experience</p>
+<p class="indent">projects   :    Display projects I've worked on</p>
+<p class="indent">about      :    Display basic information about me</p>
+<p class="indent">clear      :    Clear the screen</p><br/>
