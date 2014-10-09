@@ -3,8 +3,9 @@ var currentIndex = 0;
 var historyNum = -1;
 var total = 0;
 
-for (var i = history.length - 1; i >= 0; i--) {
+for (var i = 100; i >= 0; i--) {
     // Fill with empty string
+    console.log("ASDASDSA")
     history[i] = "";
 };
 
