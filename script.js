@@ -102,56 +102,102 @@ var submit = function () {
 
     for (var i = 0; i < commands.length; i++) {
         commands[i] = commands[i].trim();
-
         // Check if the user entered a valid command. I could probably do this by attempting to load command.txt, 
         // and check http return, but I'll stick with this for now.
 
         if (commands[i] == "help") {
             // Get the data to be output from the command
-            $.get('http://www.briankelley.me/help.txt', function(data) {
-                // Make a div to store the text in
-                var text = document.createElement("div");
-                text.innerHTML = data;
-                // Add it to the end of the "output element", meaning the div with ID "output"
-                outputElement.appendChild(text);
-                // Scroll to the bottom of the page. Otherwise, it just looks stupid.
-                window.scrollTo(0,document.body.scrollHeight);
+            // $.get('http://www.briankelley.me/help.txt', function(data) {
+            //     // Make a div to store the text in
+            //     var text = document.createElement("div");
+            //     text.innerHTML = data;
+            //     // Add it to the end of the "output element", meaning the div with ID "output"
+            //     outputElement.appendChild(text);
+            //     // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+            //     window.scrollTo(0,document.body.scrollHeight);
+            // });
+
+            $.ajax(
+                {
+                    type:"GET",
+                    url: "help.txt",
+                    async: false
+
+                }).done(function(data) {
+                    var text = document.createElement("div");
+                    text.innerHTML = data;
+                    // Add it to the end of the "output element", meaning the div with ID "output"
+                    outputElement.appendChild(text);
+                    // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+                    window.scrollTo(0,document.body.scrollHeight);
             });
 
         } else if (commands[i] == "education") {
 
-            $.get('http://www.briankelley.me/education.txt', function(data) {
-                var text = document.createElement("div");
-                text.innerHTML = data;
-                outputElement.appendChild(text);
-                window.scrollTo(0,document.body.scrollHeight);
+            $.ajax(
+                {
+                    type:"GET",
+                    url: "education.txt",
+                    async: false
+
+                }).done(function(data) {
+                    var text = document.createElement("div");
+                    text.innerHTML = data;
+                    // Add it to the end of the "output element", meaning the div with ID "output"
+                    outputElement.appendChild(text);
+                    // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+                    window.scrollTo(0,document.body.scrollHeight);
             });
 
         } else if (commands[i] == "experience") {
 
-            $.get('http://www.briankelley.me/experience.txt', function(data) {
-                var text = document.createElement("div");
-                text.innerHTML = data;
-                outputElement.appendChild(text);
-                window.scrollTo(0,document.body.scrollHeight);
+            $.ajax(
+                {
+                    type:"GET",
+                    url: "experience.txt",
+                    async: false
+
+                }).done(function(data) {
+                    var text = document.createElement("div");
+                    text.innerHTML = data;
+                    // Add it to the end of the "output element", meaning the div with ID "output"
+                    outputElement.appendChild(text);
+                    // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+                    window.scrollTo(0,document.body.scrollHeight);
             });
 
         } else if (commands[i] == "about") {
 
-            $.get('http://www.briankelley.me/about.txt', function(data) {
-                var text = document.createElement("div");
-                text.innerHTML = data;
-                outputElement.appendChild(text);
-                window.scrollTo(0,document.body.scrollHeight);
+            $.ajax(
+                {
+                    type:"GET",
+                    url: "about.txt",
+                    async: false
+
+                }).done(function(data) {
+                    var text = document.createElement("div");
+                    text.innerHTML = data;
+                    // Add it to the end of the "output element", meaning the div with ID "output"
+                    outputElement.appendChild(text);
+                    // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+                    window.scrollTo(0,document.body.scrollHeight);
             });
 
         } else if (commands[i] == "projects") {
 
-            $.get('http://www.briankelley.me/projects.txt', function(data) {
-                var text = document.createElement("div");
-                text.innerHTML = data;
-                outputElement.appendChild(text);
-                window.scrollTo(0,document.body.scrollHeight);
+            $.ajax(
+                {
+                    type:"GET",
+                    url: "about.txt",
+                    async: false
+
+                }).done(function(data) {
+                    var text = document.createElement("div");
+                    text.innerHTML = data;
+                    // Add it to the end of the "output element", meaning the div with ID "output"
+                    outputElement.appendChild(text);
+                    // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+                    window.scrollTo(0,document.body.scrollHeight);
             });
 
         } else if (commands[i] == "clear") {
