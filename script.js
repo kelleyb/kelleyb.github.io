@@ -9,23 +9,27 @@ for (var i = 100; i >= 0; i--) {
 };
 
 $("#command").keydown(function (e) {
+    // Catch certain keys and do things based on the input
     if (e.keyCode == "13") {
+        // 13 == enter key, try submitting the command
         submit();
     }
     else if (e.keyCode == "9") {
+        // 9 is the tab button, first stop the browser from moving the cursor
+        // then attempt to autocomplete what the user has there
         e.preventDefault();
         tabComplete();
     }
 
     else if(e.keyCode == "38") {
-        // Up
+        // Up key, go up within history (older commands)
         if (currentIndex > 0) {
             document.getElementById("command").value = history[currentIndex - 1];
             currentIndex = currentIndex - 1;
         };
     }
     else if(e.keyCode == "40") {
-        // Up
+        // Down key, go down within history (more recent commands)
         if (currentIndex < total) {
             document.getElementById("command").value = history[currentIndex + 1];
             currentIndex = currentIndex + 1;
@@ -33,23 +37,25 @@ $("#command").keydown(function (e) {
     }
 });
 
+// List of valid commands, used for tab completion
 var commandList = ["help", "education", "experience", "about", "projects", "clear"]
 
 if (typeof String.prototype.startsWith != 'function') {
-  // see below for better implementation!
-  String.prototype.startsWith = function (str){
-    return this.indexOf(str) == 0;
-  };
+    // Implement startsWith method for strings. Because I like Python.
+    String.prototype.startsWith = function (str){
+        return this.indexOf(str) == 0;
+    };
 }
 
 var tabComplete = function() {
     // Complete from smaller part of command
+    // split the input into smaller parts separated by "&&". We will want to autocomplete the last one.
+    // Maybe at some point I'll try to figure out how to autocomplete if the user is typing in the middle of the commands.
     var commandSplit = (document.getElementById("command").value).split("&&");
     var commandSegment = commandSplit[commandSplit.length - 1].trim();
     var possibleCommands = [];
 
-    console.log(commandSegment);
-
+    // Find what the commands could possibly be.
     for (var i = commandList.length - 1; i >= 0; i--) {
         if (commandList[i].startsWith(commandSegment)) {
             possibleCommands[possibleCommands.length] = commandList[i];
@@ -57,12 +63,14 @@ var tabComplete = function() {
     };
 
 
-
+    // If there is more than one possible command the user could be trying to enter, don't try to autocomplete.
     if (possibleCommands.length === 1) {
         if (commandSplit.length > 1) {
+            // Add a space before the command to make it look nicer. Not entirely necessary, but it's good to have.
             possibleCommands[0] = " " + possibleCommands[0]
         };
         commandSplit[commandSplit.length - 1] = possibleCommands[0];
+        // Fill the input with what we think the user meant.
         document.getElementById("command").value = commandSplit.join("&&") + " ";
     };
 
@@ -94,12 +102,19 @@ var submit = function () {
 
     for (var i = 0; i < commands.length; i++) {
         commands[i] = commands[i].trim();
-        if (commands[i] == "help") {
 
+        // Check if the user entered a valid command. I could probably do this by attempting to load command.txt, 
+        // and check http return, but I'll stick with this for now.
+
+        if (commands[i] == "help") {
+            // Get the data to be output from the command
             $.get('http://www.briankelley.me/help.txt', function(data) {
+                // Make a div to store the text in
                 var text = document.createElement("div");
                 text.innerHTML = data;
+                // Add it to the end of the "output element", meaning the div with ID "output"
                 outputElement.appendChild(text);
+                // Scroll to the bottom of the page. Otherwise, it just looks stupid.
                 window.scrollTo(0,document.body.scrollHeight);
             });
 
@@ -145,11 +160,17 @@ var submit = function () {
 
         } else if (commands[i] == "") {
             // Do nothing
+            // We don't want the user to be warned about an invalid command if they didn't enter a command in the first place
+
         } else if (commands[i].startsWith("rm -rf") || commands[i].startsWith("sudo rm -rf")) {
+            // The user is trying to delete stuff. Maybe they thought there would be an easter egg.
+            // Maybe I'll implement a good one later. For now, just show a sad face.
+
             var text = document.createElement("div");
             text.innerHTML = "<p>pls dont :(</p>";
             outputElement.appendChild(text);
             window.scrollTo(0,document.body.scrollHeight);
+
         } else {
             // They put in an incorrect command :(
             var text = document.createElement("div");
@@ -160,4 +181,5 @@ var submit = function () {
     }
 };
 
+// Make it so the browser keeps its focus on the input, even if the user clicks out.
 $('#command').on('blur',function () { var blurEl = $(this); setTimeout(function() {blurEl.focus()},10) });
