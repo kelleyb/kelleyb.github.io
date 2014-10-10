@@ -3,3 +3,6 @@
 <br/>
 <a href="https://github.com/kelleyb/RRS_Payload" target="_blank"><h3>RRS Payload - January 2014-Current</h3></a>
 <p class="indent">The Rensselaer Rocket Society required a scientific payload to achieve their goals and qualify for competitions such as the Experimental Sounding Rocket Competition. The payload we designed measures statistics such as temperature, humidity, barometric pressure, pitch, yaw, and altitude as well as GPS location data to generate a model of the rocket's flight path. My contribution to this mainly consists of software written in Arduino C/C++ to control the physical electronics. The software is hosted and maintained on GitHub to provide version control and to enable group contributions.</p><br/>
+
+<a href="https://github.com/kelleyb/PersonalSite" target="_blank"><h3>This Site!</h3></a>
+<p class="indent">This site is still a work in progress, and I add more features such as commands, tab completion, and command chaining (with &&) all the time. Whenever I think of something cool to add, I try implementing it. If it works, and doesn't seem too buggy, I push it to both here and GitHub. Because maybe someone wants to see how I implemented something</p><br/>
