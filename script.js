@@ -44,16 +44,26 @@ if (typeof String.prototype.startsWith != 'function') {
 
 var tabComplete = function() {
     // Complete from smaller part of command
-    var commandSegment = document.getElementById("command").value;
+    var commandSplit = (document.getElementById("command").value).split("&&");
+    var commandSegment = commandSplit[commandSplit.length - 1].trim();
     var possibleCommands = [];
+
+    console.log(commandSegment);
 
     for (var i = commandList.length - 1; i >= 0; i--) {
         if (commandList[i].startsWith(commandSegment)) {
             possibleCommands[possibleCommands.length] = commandList[i];
         };
     };
+
+
+
     if (possibleCommands.length === 1) {
-        document.getElementById("command").value = possibleCommands[0] + " ";
+        if (commandSplit.length > 1) {
+            possibleCommands[0] = " " + possibleCommands[0]
+        };
+        commandSplit[commandSplit.length - 1] = possibleCommands[0];
+        document.getElementById("command").value = commandSplit.join("&&") + " ";
     };
 
 }
