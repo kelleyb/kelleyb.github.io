@@ -188,7 +188,7 @@ var submit = function () {
             $.ajax(
                 {
                     type:"GET",
-                    url: "about.txt",
+                    url: "projects.txt",
                     async: false
 
                 }).done(function(data) {
