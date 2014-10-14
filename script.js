@@ -219,6 +219,8 @@ var submit = function () {
             window.scrollTo(0,document.body.scrollHeight);
         }
     }
+    var width = $(window).width() - ($("#user").width() + 30);
+    $("#command").width(width);
 };
 
 // Size of "user@briankelley ~/" is 171 pixels across. 
