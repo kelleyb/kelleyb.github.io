@@ -89,6 +89,7 @@ var submit = function () {
     var outputElement = document.getElementById("output");
     var div = document.createElement("div");
     div.innerHTML = "<span id='user'>user@briankelley  ~/&nbsp;</span>" + command;
+    div.setAttribute("style", "margin-top: 5px;");
     document.getElementById("command").value = "";
     // Put the command at the top (like in a Linux terminal)
     outputElement.appendChild(div);
