@@ -38,7 +38,7 @@ $("#command").keydown(function (e) {
 });
 
 // List of valid commands, used for tab completion
-var commandList = ["help", "education", "experience", "about", "projects", "clear"]
+var commandList = ["help", "education", "experience", "about", "projects", "clear"];
 
 if (typeof String.prototype.startsWith != 'function') {
     // Implement startsWith method for strings. Because I like Python.
@@ -107,16 +107,6 @@ var submit = function () {
 
         if (commands[i] == "help") {
             // Get the data to be output from the command
-            // $.get('http://www.briankelley.me/help.txt', function(data) {
-            //     // Make a div to store the text in
-            //     var text = document.createElement("div");
-            //     text.innerHTML = data;
-            //     // Add it to the end of the "output element", meaning the div with ID "output"
-            //     outputElement.appendChild(text);
-            //     // Scroll to the bottom of the page. Otherwise, it just looks stupid.
-            //     window.scrollTo(0,document.body.scrollHeight);
-            // });
-
             $.ajax(
                 {
                     type:"GET",

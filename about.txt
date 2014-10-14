@@ -2,7 +2,7 @@
 <p class="indent">My name is Brian Kelley. I'm a sophomore at Rensselaer Polytechnic Institute, and I'm currently pursuing a Bachelor's of Science in Computer Science. I also like working on side programming projects in my spare time, both just for fun and for the Rensselaer Center for Open Source (RCOS). You can see what I've been working on by typing the "projects" command.</p>
 <br/>
 
-<p>My github username is <a href="https://github.com/kelleyb">kelleyb</a>, you can go there to see what kind of things I've been working on. Maybe there'll be something I haven't mentioned here!</p>
+<p class="indent">My github username is <a href="https://github.com/kelleyb">kelleyb</a>, you can go there to see what kind of things I've been working on. Maybe there'll be something I haven't mentioned here!</p>
 
 <br/>
-<p>You can contact me through email at <a href="mailto:me@briankelley.me">me@briankelley.me</a>. If you find any bugs in the site, feel free to let me know!</p>
+<p class="indent">You can contact me through email at <a href="mailto:me@briankelley.me">me@briankelley.me</a>. If you find any bugs in the site, feel free to let me know!</p>
