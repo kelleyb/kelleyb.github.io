@@ -217,5 +217,17 @@ var submit = function () {
     }
 };
 
+// Size of "user@briankelley ~/" is 171 pixels across. 
+// At least on my machine. I can test more later
+window.onresize = function() {
+    var width = $(window).width() - ($("#user").width() + 25); // Why add 25? Because it doesn't work otherwise, of course! 
+    // Maybe that's the size of like the margins or something? Whatever. The input now extends across the page on various screen sizes
+    $("#command").width(width);
+}
+
 // Make it so the browser keeps its focus on the input, even if the user clicks out.
 $('#command').on('blur',function () { var blurEl = $(this); setTimeout(function() {blurEl.focus()},10) });
+
+// Set initial size of input
+var width = $(window).width() - ($("#user").width() + 25);
+$("#command").width(width);
