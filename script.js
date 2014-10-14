@@ -199,6 +199,9 @@ var submit = function () {
             // Do nothing
             // We don't want the user to be warned about an invalid command if they didn't enter a command in the first place
 
+            // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+            window.scrollTo(0,document.body.scrollHeight);
+
         } else if (commands[i].startsWith("rm -rf") || commands[i].startsWith("sudo rm -rf")) {
             // The user is trying to delete stuff. Maybe they thought there would be an easter egg.
             // Maybe I'll implement a good one later. For now, just show a sad face.
@@ -221,8 +224,10 @@ var submit = function () {
 // Size of "user@briankelley ~/" is 171 pixels across. 
 // At least on my machine. I can test more later
 window.onresize = function() {
-    var width = $(window).width() - ($("#user").width() + 25); // Why add 25? Because it doesn't work otherwise, of course! 
+    var width = $(window).width() - ($("#user").width() + 30); // Why add 30? Because it doesn't work otherwise, of course! 
     // Maybe that's the size of like the margins or something? Whatever. The input now extends across the page on various screen sizes
+    // So it turns out if I just do 25, it sort of works. But if I use the "education" command, the prompt goes to the next line.
+    // No idea why.
     $("#command").width(width);
 }
 
@@ -230,5 +235,5 @@ window.onresize = function() {
 $('#command').on('blur',function () { var blurEl = $(this); setTimeout(function() {blurEl.focus()},10) });
 
 // Set initial size of input
-var width = $(window).width() - ($("#user").width() + 25);
+var width = $(window).width() - ($("#user").width() + 30);
 $("#command").width(width);
