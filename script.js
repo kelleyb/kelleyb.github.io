@@ -204,11 +204,12 @@ var submit = function () {
         } else if (commands[i] == "doabarrelroll" || commands[i] == "do a barrel roll") {
             // Do a barrel roll!
             var s=document.createElement('style');
+            s.id = "spinner"
             s.innerHTML='@-webkit-keyframes roll {from { -webkit-transform: rotate(0deg) }to   { -webkit-transform: rotate(360deg) }}@-moz-keyframes roll {from { -moz-transform: rotate(0deg) }to   { -moz-transform: rotate(360deg) }}@keyframes roll {from { transform: rotate(0deg) }to   { transform: rotate(360deg) }}body {-moz-animation-name: roll;-moz-animation-duration: 4s;-moz-animation-iteration-count: 1;-webkit-animation-name: roll;-webkit-animation-duration: 4s;-webkit-animation-iteration-count: 1;}';
             document.getElementsByTagName('head')[0].appendChild(s);
 
             sleep(4000, function() {
-                document.getElementsByTagName('style')[0].remove(s);
+                document.getElementById('spinner').remove(s);
             });
 
         } else if (commands[i] == "") {
