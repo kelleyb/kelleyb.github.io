@@ -38,7 +38,7 @@ $("#command").keydown(function (e) {
 });
 
 // List of valid commands, used for tab completion
-var commandList = ["help", "education", "experience", "about", "projects", "clear", "doabarrelroll", "do a barrel roll"];
+var commandList = ["help", "education", "experience", "about", "projects", "clear", "doabarrelroll", "do a barrel roll", "import antigravity"];
 
 if (typeof String.prototype.startsWith != 'function') {
     // Implement startsWith method for strings. Because I like Python.
@@ -211,11 +211,16 @@ var submit = function () {
                 document.getElementsByTagName('style')[0].remove(s);
             });
 
-            
-
         } else if (commands[i] == "") {
             // Do nothing
             // We don't want the user to be warned about an invalid command if they didn't enter a command in the first place
+
+            // Scroll to the bottom of the page. Otherwise, it just looks stupid.
+            window.scrollTo(0,document.body.scrollHeight);
+
+        } else if (commands[i] == "import antigravity") {
+            var win = window.open("http://xkcd.com/353/", '_blank');
+            win.focus();
 
             // Scroll to the bottom of the page. Otherwise, it just looks stupid.
             window.scrollTo(0,document.body.scrollHeight);
