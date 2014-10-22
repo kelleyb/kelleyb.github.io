@@ -235,7 +235,27 @@ var submit = function () {
             outputElement.appendChild(text);
             window.scrollTo(0,document.body.scrollHeight);
 
-        } else {
+        } else if (commands[i].startsWith("cowsay")) {
+            var words = commands[i].split();
+            var parsedWords = "";
+
+            for(var j = 1; j < words.length; j++) {
+                // Get rid of any quotes
+                if(words[j][0] == "\"" or words[j][0] == "'") {
+                    parsedWords += words[j].substring(1) + " ";
+
+                } else if(words[j][words[j].length - 1] == "\"" or words[j][words[j].length - 1] == "'") {
+                    parsedWords += words[j].substring(0, words[j].length - 2) + " ";
+
+                } else {
+                    parsedWords += words[j] + " ";
+                }
+            }
+            console.log(parsedWords);
+
+            window.scrollTo(0,document.body.scrollHeight);
+
+        }else {
             // They put in an incorrect command :(
             var text = document.createElement("div");
             text.innerHTML = "<p>Invalid command :(</p>";
@@ -263,3 +283,93 @@ $('#command').on('blur',function () { var blurEl = $(this); setTimeout(function(
 // Set initial size of input
 var width = $(window).width() - ($("#user").width() + 30);
 $("#command").width(width);
+
+// Cowsay
+//  ____________________
+// < This is an example >
+//  --------------------
+//         \   ^__^
+//          \  (oo)\_______
+//             (__)\       )\/\
+//                 ||----w |
+//                 ||     ||
+
+
+function cowSay(words) {
+    var width = 30;
+    var totalString = "";
+    var line = " ";
+    var line1 = " ";
+
+    if (words.length < width) {
+        for (var i = words.length; i >= 0; i--) {
+            line += "_";
+            line1 += "-";
+        };
+    } else {
+        for (var i = width; i > 0; i--) {
+            line += "_";
+            line1 += "-";
+        };
+    };
+
+    totalString += line + "&#10;";
+    var wordList = words.split(" ");
+    if (words.length < width) {
+
+        totalString += "< " + words + " >" + "&#10;";
+
+    } else {
+
+        var currentIndex = 0;
+        var lines = new Array();
+
+        for (var i = 0; i < wordList.length; i++) {
+
+            if(lines[currentIndex] == undefined) {
+                lines[currentIndex] = "";
+            }
+            if (lines[currentIndex].length + wordList[i].length < width - 1) {
+                lines[currentIndex] += wordList[i] + " ";
+
+            } else if (lines[currentIndex].length + wordList[i].length < width) {
+                lines[currentIndex] += wordList[i];
+            } else {
+                currentIndex++;
+                lines[currentIndex] = "";
+                lines[currentIndex] += wordList[i] + " ";
+            }
+            
+        };
+
+        for(var i = 0; i <= currentIndex; i++) {
+
+            var padding = "";
+            if (i == 0) {
+                var beginning = "/ ";
+                var ending = " \\"; 
+            } else if (i == currentIndex) {
+                var beginning = "\\ ";
+                var ending = " /";
+            } else {
+                beginning = "| ";
+                ending = " |";
+            }
+
+            for(var j = 0; j < width - lines[i].length; j++) {
+                padding += " ";
+            }
+
+            totalString += beginning + lines[i] + padding + ending + "&#10;";
+        }
+
+    };
+    totalString += line1 + "&#10;";
+    totalString += "         \\   ^__^" + "&#10;";
+    totalString += "          \\  (oo)\\_______" + "&#10;";
+    totalString += "             (__)\\       )\\/\\" + "&#10;";
+    totalString += "                 ||----w |" + "&#10;";
+    totalString += "                 ||     ||" + "&#10;";
+
+    return totalString;
+}
