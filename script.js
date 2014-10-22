@@ -38,7 +38,7 @@ $("#command").keydown(function (e) {
 });
 
 // List of valid commands, used for tab completion
-var commandList = ["help", "education", "experience", "about", "projects", "clear", "doabarrelroll", "do a barrel roll", "import antigravity"];
+var commandList = ["help", "education", "experience", "about", "projects", "clear", "doabarrelroll", "do a barrel roll", "import antigravity", "cowsay"];
 
 if (typeof String.prototype.startsWith != 'function') {
     // Implement startsWith method for strings. Because I like Python.
@@ -257,6 +257,7 @@ var submit = function () {
             
             var toInsert = cowSay(parsedWords);
 
+            // Print out cow to "console"
             var text = document.createElement("div");
             text.innerHTML = toInsert;
             outputElement.appendChild(text);
@@ -335,33 +336,44 @@ function cowSay(words) {
         for (var i = 0; i < wordList.length; i++) {
 
             if(lines[currentIndex] == undefined) {
+                // If we haven't done anything to the string yet, initialize it.
                 lines[currentIndex] = "";
             }
+
             if (lines[currentIndex].length + wordList[i].length < width - 1) {
+                // Add the word to the line if it will fit. (with a space)
                 lines[currentIndex] += wordList[i] + " ";
 
             } else if (lines[currentIndex].length + wordList[i].length < width) {
+                // Add the word to the line if it will fit. (without a space)
                 lines[currentIndex] += wordList[i];
+
             } else {
                 
                 if(lines[currentIndex].length > 0) {
+                    // We want to go to the next line if there's already something on the current line
                     currentIndex++;
                 }
 
+                // Split the long string into smaller strings up to size 28 (so it will fit.)
                 var splitLine = wordList[i].match(/.{1,28}/g);
 
+                // Add each line to the strings to be printed
                 for(var j = 0; j < splitLine.length; j++) {
                     lines[currentIndex] = "";
                     lines[currentIndex] += splitLine[j];
 
                     if(j != splitLine.length - 1) {
+                        // We don't necessarily want to add an extra line after the last part of the long word.
                         currentIndex++;
                     }
                     
                 }
                 if (lines[currentIndex].length == 30) {
-                     currentIndex++;
+                    // If the line is long enough, go to the next one
+                    currentIndex++;
                 } else {
+                    // Otherwise, add a space and do the check again
                     lines[currentIndex] += " ";
 
                     if (lines[currentIndex].length == 30) {
@@ -375,7 +387,7 @@ function cowSay(words) {
         };
 
         for(var i = 0; i <= currentIndex; i++) {
-
+            // Add padding to each line, along with the style of text box
             var padding = "";
             if (i == 0) {
                 var beginning = "/ ";
@@ -396,6 +408,7 @@ function cowSay(words) {
         }
 
     };
+    // Add cow ascii art 
     totalString += "<p>" + line1 + "</p>";
     totalString += "<p>" + "         \\   ^__^" + "</p>";
     totalString += "<p>" + "          \\  (oo)\\_______" + "</p>";
