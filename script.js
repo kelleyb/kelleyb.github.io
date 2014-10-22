@@ -364,7 +364,7 @@ function cowSay(words) {
                 ending = " |";
             }
 
-            for(var j = 0; j < width - (lines[i].length + 1); j++) {
+            for(var j = 0; j < width - (lines[i].length + 2); j++) {
                 padding += " ";
             }
 
