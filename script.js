@@ -343,9 +343,33 @@ function cowSay(words) {
             } else if (lines[currentIndex].length + wordList[i].length < width) {
                 lines[currentIndex] += wordList[i];
             } else {
-                currentIndex++;
-                lines[currentIndex] = "";
-                lines[currentIndex] += wordList[i] + " ";
+                
+                if(lines[currentIndex].length > 0) {
+                    currentIndex++;
+                }
+
+                var splitLine = wordList[i].match(/.{1,28}/g);
+
+                for(var j = 0; j < splitLine.length; j++) {
+                    lines[currentIndex] = "";
+                    lines[currentIndex] += splitLine[j];
+
+                    if(j != splitLine.length - 1) {
+                        currentIndex++;
+                    }
+                    
+                }
+                if (lines[currentIndex].length == 30) {
+                     currentIndex++;
+                } else {
+                    lines[currentIndex] += " ";
+
+                    if (lines[currentIndex].length == 30) {
+                         currentIndex++;
+                    } 
+                }
+               
+
             }
             
         };
