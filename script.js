@@ -236,22 +236,30 @@ var submit = function () {
             window.scrollTo(0,document.body.scrollHeight);
 
         } else if (commands[i].startsWith("cowsay")) {
-            var words = commands[i].split();
+            var words = commands[i].split(" ");
+            console.log(words);
             var parsedWords = "";
 
             for(var j = 1; j < words.length; j++) {
                 // Get rid of any quotes
-                if(words[j][0] == "\"" or words[j][0] == "'") {
+                if((words[j][0] == "\"" || words[j][0] == "'") && j == 1) {
                     parsedWords += words[j].substring(1) + " ";
 
-                } else if(words[j][words[j].length - 1] == "\"" or words[j][words[j].length - 1] == "'") {
-                    parsedWords += words[j].substring(0, words[j].length - 2) + " ";
+                } else if((words[j][words[j].length - 1] == "\"" || words[j][words[j].length - 1] == "'") && j == words.length - 1) {
+                    // Substring helps us make sure we only get what we want. Mostly.
+                    parsedWords += words[j].substring(0, words[j].length - 1) + " ";
 
                 } else {
+                    // No quotes. Don't get rid of anything.
                     parsedWords += words[j] + " ";
                 }
             }
-            console.log(parsedWords);
+            
+            var toInsert = cowSay(parsedWords);
+
+            var text = document.createElement("div");
+            text.innerHTML = toInsert;
+            outputElement.appendChild(text);
 
             window.scrollTo(0,document.body.scrollHeight);
 
@@ -313,11 +321,11 @@ function cowSay(words) {
         };
     };
 
-    totalString += line + "&#10;";
+    totalString += "<p>" + line + "</p>";
     var wordList = words.split(" ");
     if (words.length < width) {
 
-        totalString += "< " + words + " >" + "&#10;";
+        totalString += "<p>" + "< " + words + " >" + "</p>";
 
     } else {
 
@@ -356,20 +364,20 @@ function cowSay(words) {
                 ending = " |";
             }
 
-            for(var j = 0; j < width - lines[i].length; j++) {
+            for(var j = 0; j < width - (lines[i].length + 1); j++) {
                 padding += " ";
             }
 
-            totalString += beginning + lines[i] + padding + ending + "&#10;";
+            totalString += "<p>" + beginning + lines[i] + padding + ending + "</p>";
         }
 
     };
-    totalString += line1 + "&#10;";
-    totalString += "         \\   ^__^" + "&#10;";
-    totalString += "          \\  (oo)\\_______" + "&#10;";
-    totalString += "             (__)\\       )\\/\\" + "&#10;";
-    totalString += "                 ||----w |" + "&#10;";
-    totalString += "                 ||     ||" + "&#10;";
+    totalString += "<p>" + line1 + "</p>";
+    totalString += "<p>" + "         \\   ^__^" + "</p>";
+    totalString += "<p>" + "          \\  (oo)\\_______" + "</p>";
+    totalString += "<p>" + "             (__)\\       )\\/\\" + "</p>";
+    totalString += "<p>" + "                 ||----w |" + "</p>";
+    totalString += "<p>" + "                 ||     ||" + "</p>";
 
     return totalString;
 }
