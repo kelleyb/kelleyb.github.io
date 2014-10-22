@@ -325,7 +325,7 @@ function cowSay(words) {
     var wordList = words.split(" ");
     if (words.length < width) {
 
-        totalString += "<p>" + "< " + words + " >" + "</p>";
+        totalString += "<p>" + "< " + words + ">" + "</p>";
 
     } else {
 
