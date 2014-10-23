@@ -242,6 +242,7 @@ var submit = function () {
 
             if(words[1] == "-f") {
                 var animal = words[2];
+                var startIndex = 3
             } else {
                 var animal = "cow";
                 var startIndex = 1;
@@ -249,7 +250,7 @@ var submit = function () {
 
             for(var j = startIndex; j < words.length; j++) {
                 // Get rid of any quotes
-                if((words[j][0] == "\"" || words[j][0] == "'") && j == 1) {
+                if((words[j][0] == "\"" || words[j][0] == "'") && j == startIndex) {
                     parsedWords += words[j].substring(1) + " ";
 
                 } else if((words[j][words[j].length - 1] == "\"" || words[j][words[j].length - 1] == "'") && j == words.length - 1) {
@@ -442,14 +443,6 @@ function cowSay(words, animal) {
             // Add ascii art to string
             totalString += data;
     });
-
-    // Add cow ascii art 
-    
-    // totalString += "<p>" + "         \\   ^__^" + "</p>";
-    // totalString += "<p>" + "          \\  (oo)\\_______" + "</p>";
-    // totalString += "<p>" + "             (__)\\       )\\/\\" + "</p>";
-    // totalString += "<p>" + "                 ||----w |" + "</p>";
-    // totalString += "<p>" + "                 ||     ||" + "</p>";
 
     return totalString;
 }
