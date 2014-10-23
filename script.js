@@ -240,7 +240,14 @@ var submit = function () {
             console.log(words);
             var parsedWords = "";
 
-            for(var j = 1; j < words.length; j++) {
+            if(words[1] == "-f") {
+                var animal = words[2];
+            } else {
+                var animal = "cow";
+                var startIndex = 1;
+            }
+
+            for(var j = startIndex; j < words.length; j++) {
                 // Get rid of any quotes
                 if((words[j][0] == "\"" || words[j][0] == "'") && j == 1) {
                     parsedWords += words[j].substring(1) + " ";
@@ -255,7 +262,7 @@ var submit = function () {
                 }
             }
             
-            var toInsert = cowSay(parsedWords);
+            var toInsert = cowSay(parsedWords, animal);
 
             // Print out cow to "console"
             var text = document.createElement("div");
@@ -264,7 +271,7 @@ var submit = function () {
 
             window.scrollTo(0,document.body.scrollHeight);
 
-        }else {
+        } else {
             // They put in an incorrect command :(
             var text = document.createElement("div");
             text.innerHTML = "<p>Invalid command :(</p>";
@@ -304,11 +311,26 @@ $("#command").width(width);
 //                 ||     ||
 
 
-function cowSay(words) {
+function cowSay(words, animal) {
     var width = 30;
     var totalString = "";
     var line = " ";
     var line1 = " ";
+
+    var animals = {"cow", "apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
+                    "calvin", "cheese", "cock", "cower", "daemon", "dragon", 
+                    "dragon-and-cow", "duck", "elephant", "elephant-in-snake", 
+                    "eyes", "flaming-sheep", "ghostbusters", "gnu", "head-in", 
+                    "hellokitty", "kiss", "kitty", "koala", "kosh", "luke-koala", 
+                    "mech-and-cow", "meow", "milk", "moofasa", "moose", "mutilated", 
+                    "pony", "pony-smaller", "ren", "sheep", "skeleton", "snowman", 
+                    "sodomized-sheep", "stegosaurus", "stimpy", "suse", "three-eyes", 
+                    "turkey", "turtle", "tux", "unipony", "unipony-smaller", "vader", 
+                    "vader-koala", "www"}
+    
+    if (animals.indexOf(animal) == -1) {
+        return "<p>Invalid argument for -f</p>"
+    }
 
     if (words.length < width) {
         for (var i = words.length; i >= 0; i--) {
@@ -408,13 +430,26 @@ function cowSay(words) {
         }
 
     };
-    // Add cow ascii art 
+
     totalString += "<p>" + line1 + "</p>";
-    totalString += "<p>" + "         \\   ^__^" + "</p>";
-    totalString += "<p>" + "          \\  (oo)\\_______" + "</p>";
-    totalString += "<p>" + "             (__)\\       )\\/\\" + "</p>";
-    totalString += "<p>" + "                 ||----w |" + "</p>";
-    totalString += "<p>" + "                 ||     ||" + "</p>";
+    $.ajax(
+        {
+            type:"GET",
+            url: animal + ".txt",
+            async: false
+
+        }).done(function(data) {
+            // Add ascii art to string
+            totalString += data;
+    });
+
+    // Add cow ascii art 
+    
+    // totalString += "<p>" + "         \\   ^__^" + "</p>";
+    // totalString += "<p>" + "          \\  (oo)\\_______" + "</p>";
+    // totalString += "<p>" + "             (__)\\       )\\/\\" + "</p>";
+    // totalString += "<p>" + "                 ||----w |" + "</p>";
+    // totalString += "<p>" + "                 ||     ||" + "</p>";
 
     return totalString;
 }
