@@ -317,7 +317,7 @@ function cowSay(words, animal) {
     var line = " ";
     var line1 = " ";
 
-    var animals = {"cow", "apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
+    var animals = ["cow", "apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
                     "calvin", "cheese", "cock", "cower", "daemon", "dragon", 
                     "dragon-and-cow", "duck", "elephant", "elephant-in-snake", 
                     "eyes", "flaming-sheep", "ghostbusters", "gnu", "head-in", 
@@ -326,7 +326,7 @@ function cowSay(words, animal) {
                     "pony", "pony-smaller", "ren", "sheep", "skeleton", "snowman", 
                     "sodomized-sheep", "stegosaurus", "stimpy", "suse", "three-eyes", 
                     "turkey", "turtle", "tux", "unipony", "unipony-smaller", "vader", 
-                    "vader-koala", "www"}
+                    "vader-koala", "www"]
     
     if (animals.indexOf(animal) == -1) {
         return "<p>Invalid argument for -f</p>"
