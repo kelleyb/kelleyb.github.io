@@ -36,18 +36,19 @@ $("#command").keydown(function (e) {
     else if(e.keyCode == "38") {
         
         // Up key, go up within history (older commands)
+        console.log(currentIndex);
         if (currentIndex > 1) {
             currentIndex = currentIndex - 1;
-            document.getElementById("command").value = history[currentIndex];
         };
+        document.getElementById("command").value = history[currentIndex];
     }
     else if(e.keyCode == "40") {
-        
+        console.log(currentIndex);
         // Down key, go down within history (more recent commands)
         if (currentIndex <= total) {
             currentIndex = currentIndex + 1;
-            document.getElementById("command").value = history[currentIndex];
         };
+        document.getElementById("command").value = history[currentIndex];
     }
 });
 
@@ -101,10 +102,13 @@ var submit = function () {
     var command = document.getElementById("command").value;
     if (currentIndex == total) {
         currentIndex = currentIndex + 1;
-        total = total + 1;
     };
-    history[currentIndex] = command;
-    currentIndex++;    
+    total = total + 1;
+    history[total] = command;
+    currentIndex = total + 1; 
+
+    console.log(history);
+    console.log(currentIndex);
 
     var outputElement = document.getElementById("output");
     var div = document.createElement("div");
