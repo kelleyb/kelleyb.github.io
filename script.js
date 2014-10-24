@@ -34,17 +34,19 @@ $("#command").keydown(function (e) {
     }
 
     else if(e.keyCode == "38") {
+        
         // Up key, go up within history (older commands)
-        if (currentIndex > 0) {
-            document.getElementById("command").value = history[currentIndex - 1];
+        if (currentIndex > 1) {
             currentIndex = currentIndex - 1;
+            document.getElementById("command").value = history[currentIndex];
         };
     }
     else if(e.keyCode == "40") {
+        
         // Down key, go down within history (more recent commands)
-        if (currentIndex < total) {
-            document.getElementById("command").value = history[currentIndex + 1];
+        if (currentIndex <= total) {
             currentIndex = currentIndex + 1;
+            document.getElementById("command").value = history[currentIndex];
         };
     }
 });
@@ -97,12 +99,12 @@ function sleep(millis, callback) {
 var submit = function () {
 	// Get command from input
     var command = document.getElementById("command").value;
-    history[currentIndex] = command;
     if (currentIndex == total) {
         currentIndex = currentIndex + 1;
         total = total + 1;
     };
-    
+    history[currentIndex] = command;
+    currentIndex++;    
 
     var outputElement = document.getElementById("output");
     var div = document.createElement("div");
@@ -380,29 +382,29 @@ function cowSay(words, cow) {
 
     } else {
 
-        var currentIndex = 0;
+        var cowIndex = 0;
         var lines = new Array();
 
         for (var i = 0; i < wordList.length; i++) {
 
-            if(lines[currentIndex] == undefined) {
+            if(lines[cowIndex] == undefined) {
                 // If we haven't done anything to the string yet, initialize it.
-                lines[currentIndex] = "";
+                lines[cowIndex] = "";
             }
 
-            if (lines[currentIndex].length + wordList[i].length < width - 1) {
+            if (lines[cowIndex].length + wordList[i].length < width - 1) {
                 // Add the word to the line if it will fit. (with a space)
-                lines[currentIndex] += wordList[i] + " ";
+                lines[cowIndex] += wordList[i] + " ";
 
-            } else if (lines[currentIndex].length + wordList[i].length < width) {
+            } else if (lines[cowIndex].length + wordList[i].length < width) {
                 // Add the word to the line if it will fit. (without a space)
-                lines[currentIndex] += wordList[i];
+                lines[cowIndex] += wordList[i];
 
             } else {
                 
-                if(lines[currentIndex].length > 0) {
+                if(lines[cowIndex].length > 0) {
                     // We want to go to the next line if there's already something on the current line
-                    currentIndex++;
+                    cowIndex++;
                 }
 
                 // Split the long string into smaller strings up to size 28 (so it will fit.)
@@ -410,24 +412,24 @@ function cowSay(words, cow) {
 
                 // Add each line to the strings to be printed
                 for(var j = 0; j < splitLine.length; j++) {
-                    lines[currentIndex] = "";
-                    lines[currentIndex] += splitLine[j];
+                    lines[cowIndex] = "";
+                    lines[cowIndex] += splitLine[j];
 
                     if(j != splitLine.length - 1) {
                         // We don't necessarily want to add an extra line after the last part of the long word.
-                        currentIndex++;
+                        cowIndex++;
                     }
                     
                 }
-                if (lines[currentIndex].length == 30) {
+                if (lines[cowIndex].length == 30) {
                     // If the line is long enough, go to the next one
-                    currentIndex++;
+                    cowIndex++;
                 } else {
                     // Otherwise, add a space and do the check again
-                    lines[currentIndex] += " ";
+                    lines[cowIndex] += " ";
 
-                    if (lines[currentIndex].length == 30) {
-                         currentIndex++;
+                    if (lines[cowIndex].length == 30) {
+                         cowIndex++;
                     } 
                 }
                
@@ -436,13 +438,13 @@ function cowSay(words, cow) {
             
         };
 
-        for(var i = 0; i <= currentIndex; i++) {
+        for(var i = 0; i <= cowIndex; i++) {
             // Add padding to each line, along with the style of text box
             var padding = "";
             if (i == 0) {
                 var beginning = "/ ";
                 var ending = " \\"; 
-            } else if (i == currentIndex) {
+            } else if (i == cowIndex) {
                 var beginning = "\\ ";
                 var ending = " /";
             } else {
