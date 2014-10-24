@@ -9,14 +9,14 @@ for (var i = 100; i >= 0; i--) {
 };
 
 // Possible cows
-var cows = ["apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
-            "calvin", "cheese", "cock", "cow", "cower", "daemon", "dragon", 
+var cows = ["apt", "beavis.zen", "bud-frogs", "bunny", 
+            "calvin", "cheese", "chicken", "cow", "cower", "daemon", "dragon", 
             "dragon-and-cow", "duck", "elephant", "elephant-in-snake", 
-            "eyes", "flaming-sheep", "ghostbusters", "gnu", "head-in", 
+            "eyes", "flaming-sheep", "ghostbusters", "gnu", 
             "hellokitty", "kiss", "kitty", "koala", "kosh", "luke-koala", 
-            "mech-and-cow", "meow", "milk", "moofasa", "moose", "mutilated", 
+            "mech-and-cow", "meow", "milk", "moofasa", "moose", 
             "pony", "pony-smaller", "ren", "sheep", "skeleton", "snowman", 
-            "sodomized-sheep", "stegosaurus", "stimpy", "suse", "three-eyes", 
+            "stegosaurus", "stimpy", "suse", "three-eyes", 
             "turkey", "turtle", "tux", "unipony", "unipony-smaller", "vader", 
             "vader-koala", "www"]
 
