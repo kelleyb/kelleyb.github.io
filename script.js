@@ -100,9 +100,7 @@ function sleep(millis, callback) {
 var submit = function () {
 	// Get command from input
     var command = document.getElementById("command").value;
-    if (currentIndex == total) {
-        currentIndex = currentIndex + 1;
-    };
+
     total = total + 1;
     history[total] = command;
     currentIndex = total + 1; 
@@ -306,8 +304,6 @@ var submit = function () {
                 }
                 var toInsert = cowSay(parsedWords, cow);
             }
-            
-            
 
             // Print out cow to "console"
             var text = document.createElement("div");
@@ -436,10 +432,7 @@ function cowSay(words, cow) {
                          cowIndex++;
                     } 
                 }
-               
-
             }
-            
         };
 
         for(var i = 0; i <= cowIndex; i++) {
@@ -462,7 +455,6 @@ function cowSay(words, cow) {
 
             totalString += "<p>" + beginning + lines[i] + padding + ending + "</p>";
         }
-
     };
 
     totalString += "<p>" + line1 + "</p>";
