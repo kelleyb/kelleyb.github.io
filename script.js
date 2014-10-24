@@ -8,6 +8,18 @@ for (var i = 100; i >= 0; i--) {
     history[i] = "";
 };
 
+// Possible cows
+var cows = ["apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
+            "calvin", "cheese", "cock", "cow", "cower", "daemon", "dragon", 
+            "dragon-and-cow", "duck", "elephant", "elephant-in-snake", 
+            "eyes", "flaming-sheep", "ghostbusters", "gnu", "head-in", 
+            "hellokitty", "kiss", "kitty", "koala", "kosh", "luke-koala", 
+            "mech-and-cow", "meow", "milk", "moofasa", "moose", "mutilated", 
+            "pony", "pony-smaller", "ren", "sheep", "skeleton", "snowman", 
+            "sodomized-sheep", "stegosaurus", "stimpy", "suse", "three-eyes", 
+            "turkey", "turtle", "tux", "unipony", "unipony-smaller", "vader", 
+            "vader-koala", "www"]
+
 $("#command").keydown(function (e) {
     // Catch certain keys and do things based on the input
     if (e.keyCode == "13") {
@@ -240,30 +252,56 @@ var submit = function () {
             console.log(words);
             var parsedWords = "";
 
+            // Determine arguments and run
+
             if(words[1] == "-f") {
-                var animal = words[2];
+                // Pick the cow
+                var cow = words[2];
                 var startIndex = 3
+                var go = true;
+
+            } else if(words[1] == "-l") {
+                // List possible cows
+                var go = false;
+                var toInsert = ""
+                var currentLine = "<p>";
+
+                for(var i = 0; i < cows.length; i++) {
+                    if(currentLine.length >= 80) {
+                        currentLine += "</p><p>";
+                        toInsert += currentLine;
+                        currentLine = "";
+                    }
+                    currentLine += cows[i] + " ";
+                }
+
             } else {
-                var animal = "cow";
+                // Default cow
+                var go = true;
+                var cow = "cow";
                 var startIndex = 1;
             }
 
-            for(var j = startIndex; j < words.length; j++) {
-                // Get rid of any quotes
-                if((words[j][0] == "\"" || words[j][0] == "'") && j == startIndex) {
-                    parsedWords += words[j].substring(1) + " ";
+            if (go) {
+                // Go if the user didn't want to list the cows
+                for(var j = startIndex; j < words.length; j++) {
+                    // Get rid of any quotes
+                    if((words[j][0] == "\"" || words[j][0] == "'") && j == startIndex) {
+                        parsedWords += words[j].substring(1) + " ";
 
-                } else if((words[j][words[j].length - 1] == "\"" || words[j][words[j].length - 1] == "'") && j == words.length - 1) {
-                    // Substring helps us make sure we only get what we want. Mostly.
-                    parsedWords += words[j].substring(0, words[j].length - 1) + " ";
+                    } else if((words[j][words[j].length - 1] == "\"" || words[j][words[j].length - 1] == "'") && j == words.length - 1) {
+                        // Substring helps us make sure we only get what we want. Mostly.
+                        parsedWords += words[j].substring(0, words[j].length - 1) + " ";
 
-                } else {
-                    // No quotes. Don't get rid of anything.
-                    parsedWords += words[j] + " ";
+                    } else {
+                        // No quotes. Don't get rid of anything.
+                        parsedWords += words[j] + " ";
+                    }
                 }
+                var toInsert = cowSay(parsedWords, cow);
             }
             
-            var toInsert = cowSay(parsedWords, animal);
+            
 
             // Print out cow to "console"
             var text = document.createElement("div");
@@ -312,24 +350,13 @@ $("#command").width(width);
 //                 ||     ||
 
 
-function cowSay(words, animal) {
+function cowSay(words, cow) {
     var width = 30;
     var totalString = "";
     var line = " ";
     var line1 = " ";
-
-    var animals = ["cow", "apt", "beavis.zen", "bong", "bud-frogs", "bunny", 
-                    "calvin", "cheese", "cock", "cower", "daemon", "dragon", 
-                    "dragon-and-cow", "duck", "elephant", "elephant-in-snake", 
-                    "eyes", "flaming-sheep", "ghostbusters", "gnu", "head-in", 
-                    "hellokitty", "kiss", "kitty", "koala", "kosh", "luke-koala", 
-                    "mech-and-cow", "meow", "milk", "moofasa", "moose", "mutilated", 
-                    "pony", "pony-smaller", "ren", "sheep", "skeleton", "snowman", 
-                    "sodomized-sheep", "stegosaurus", "stimpy", "suse", "three-eyes", 
-                    "turkey", "turtle", "tux", "unipony", "unipony-smaller", "vader", 
-                    "vader-koala", "www"]
     
-    if (animals.indexOf(animal) == -1) {
+    if (cows.indexOf(cow) == -1) {
         return "<p>Invalid argument for -f</p>"
     }
 
@@ -436,7 +463,7 @@ function cowSay(words, animal) {
     $.ajax(
         {
             type:"GET",
-            url: animal + ".txt",
+            url: cow + ".txt",
             async: false
 
         }).done(function(data) {
