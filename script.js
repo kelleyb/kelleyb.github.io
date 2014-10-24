@@ -463,7 +463,7 @@ function cowSay(words, cow) {
     $.ajax(
         {
             type:"GET",
-            url: cow + ".txt",
+            url: "cows/" + cow + ".txt",
             async: false
 
         }).done(function(data) {
