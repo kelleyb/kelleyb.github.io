@@ -255,6 +255,11 @@ var submit = function () {
             var words = commands[i].split(" ");
             console.log(words);
             var parsedWords = "";
+            
+            if(words.length === 1) {
+            	console.log("Hi!")
+            	words = ["cowsay", "moo"]
+            }
 
             // Determine arguments and run
 
