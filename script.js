@@ -36,14 +36,12 @@ $("#command").keydown(function (e) {
     else if(e.keyCode == "38") {
         
         // Up key, go up within history (older commands)
-        console.log(currentIndex);
         if (currentIndex > 1) {
             currentIndex = currentIndex - 1;
         };
         document.getElementById("command").value = history[currentIndex];
     }
     else if(e.keyCode == "40") {
-        console.log(currentIndex);
         // Down key, go down within history (more recent commands)
         if (currentIndex <= total) {
             currentIndex = currentIndex + 1;
@@ -104,9 +102,6 @@ var submit = function () {
     total = total + 1;
     history[total] = command;
     currentIndex = total + 1; 
-
-    console.log(history);
-    console.log(currentIndex);
 
     var outputElement = document.getElementById("output");
     var div = document.createElement("div");
@@ -253,12 +248,10 @@ var submit = function () {
 
         } else if (commands[i].startsWith("cowsay")) {
             var words = commands[i].split(" ");
-            console.log(words);
             var parsedWords = "";
             
             if(words.length === 1) {
-            	console.log("Hi!")
-            	words = ["cowsay", "moo"]
+            	words = ["cowsay", "moo"];
             }
 
             // Determine arguments and run
@@ -266,7 +259,7 @@ var submit = function () {
             if(words[1] == "-f") {
                 // Pick the cow
                 var cow = words[2];
-                var startIndex = 3
+                var startIndex = 3;
                 var go = true;
 
             } else if(words[1] == "-l") {
