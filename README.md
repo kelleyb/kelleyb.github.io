@@ -15,3 +15,5 @@ to get Calvin doing the same thing. As far as I can tell, I've added in all the 
 
 
 Another example of something I added in: Tab completion. I've gotten used to being able to complete my commands in Linux using the tab key. So why not add it into my website? With any supported command, just start typing it and press tab. If there is only 1 match for what you've typed, the input will be replaced with the correct command. This also works when chaining commands together with "&&". Which is another thing I've added.
+
+Can now be found at [http://www.briankelley.me/dev/](http://www.briankelley.me/dev/)
