@@ -1,8 +1,0 @@
-<h3>Rensselaer Center for Open Source Software</h3>
-<p class="indent">Project lead and developer, Where R U? - September 2014-Current</p>
-<p class="indent">Led development of cross-platform open source Android and iOS app. Managed any paperwork and presentations required.</p>
-<br/>
-<h3>A&P Supermarkets</h3>
-<p class="indent">Stock Clerk - August 2012-July 2013</p>
-<p class="indent">Cashier     - June 2014-August 2014</p>
-<p class="indent">&nbsp;&nbsp;&nbsp;&nbsp;Trained new staff, responsible for override validation.</p><br/>

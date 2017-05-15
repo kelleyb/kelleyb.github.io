@@ -1,7 +1,0 @@
-<p>Commands:</p>
-<p class="indent">help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Display the help text (This!)</p>
-<p class="indent">education&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Display information about my education</p>
-<p class="indent">experience&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Display my current work experience</p>
-<p class="indent">projects&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Display projects I've worked on</p>
-<p class="indent">about&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Display basic information about me</p>
-<p class="indent">clear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;Clear the screen</p>
