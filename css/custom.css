@@ -1,13 +1,35 @@
-.card-content p.card-text {
-	margin-bottom: 10px;
+.header {
+    text-align: center;
+    height: 75px;
 }
 
-body {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
+.headshot {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-main {
-	flex: 1 0 auto;
+.company {
+    font-size: 18px;
+    display: inline-block;
+    float: left;
+    width: 100%;
+    font-weight: bold;
+}
+
+.position-metadata {
+    font-size: 12px;
+    padding-top: 10px;
+}
+
+.section-title {
+    margin-bottom: 0;
+}
+
+.job-heading {
+    min-height: 25px;
+    max-height: 35px;
+}
+
+* {
+    font-family: "Open Sans"
 }
